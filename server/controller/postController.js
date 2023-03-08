@@ -4,14 +4,14 @@ const { response } = require("express");
 const posts = require('../models/posts');
 
 exports.createPost=(req, res) => {
-    const {title, author, details, role} = req.body
+    const {title, author_id, details, role} = req.body
     let slug=uuidv4()
 
     switch(true){
         case !title:
             return res.status(400).json({err:"no title"})
             break;
-        case !author:
+        case !author_id:
             return res.status(400).json({err:"no author"})
             break;
         case !details:
@@ -28,7 +28,7 @@ exports.createPost=(req, res) => {
     //     }
     //     res.json(post)
     // })
-    Posts.create({title, author, details, role, slug})
+    Posts.create({title, author_id, details, role, slug})
         .then((post) => {res.json(post)})
         .catch((err)=>{res.status(400).json({err:"something wrong"})})
 }
@@ -40,3 +40,10 @@ exports.getAllPost=(req, res) => {
     Posts.find({}).exec()
         .then((posts) => {res.json(posts)})
 }
+
+// exports.updatePost=(req, res) => {
+//     const {slug} = req.params
+//     Posts.findOneAndUpdate({slug}, {title, details, role}, {new:true}).exec()
+//         .then((post) => {res.json(post)})
+//         .catch((err) => {res.status(400).json(err)})
+// }
