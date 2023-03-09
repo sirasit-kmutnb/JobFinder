@@ -7,7 +7,7 @@ detail:{
 	detail:'Sector(s): Industrials, Industry: Industrial Distribution'
 	}
 email:'marketingsolutions.th@shopee.com'
-subscription:
+subscription: True
 }
 
 
@@ -20,7 +20,7 @@ detail:{
 	detail:'Sector(s): Industrials, Industry: Railroads'
 	}
 email:'CompanySecretary@btsgroup.co.th'
-subscription:
+subscription: False
 }
 
 
@@ -33,7 +33,7 @@ detail:{
 	detail:'Sector: Consumer Defensive, Industry: Farm Products'
 	}
 email:'consumercenter@cpf.co.th'
-subscription:
+subscription: False
 }
 
 
@@ -46,7 +46,7 @@ detail:{
 	detail:'Sector: Consumer Defensive, Industry: Grocery Stores'
 	}
 email:'faq@7eleven.co.th'
-subscription:
+subscription: True
 }
 
 
@@ -59,7 +59,7 @@ detail:{
 	detail:'Sector: Industrials, Industry: Integrated Freight & Logistics'
 	}
 email: 'TH.EX.Callcenter@kerryexpress.com'
-subscription:
+subscription: True
 }
 
 
@@ -72,7 +72,7 @@ detail:{
 	detail:'Sector: Consumer Cyclical, Industry: Packaging & Containers'
 	}
 email:'SCGP_invest@scg.com'
-subscription:
+subscription: False
 }
 
 
@@ -85,7 +85,7 @@ detail:{
 	detail:'Sector: Real Estate, Industry: Real Estate—Diversified'
 	}
 email:'call_center@centralpattana.co.th'
-subscription:
+subscription: False
 }
 
 
@@ -98,7 +98,7 @@ detail:{
 	detail:'Sector: Communication Services, Industry: Telecom Services'
 	}
 email:'voc@truecorp.co.th'
-subscription:
+subscription: True
 }
 
 
@@ -111,7 +111,7 @@ detail:{
 	detail:'Sector: Energy, Industry: Oil & Gas Integrated'
 	}
 email:'contact@pttplc.com'
-subscription:
+subscription: True
 }
 
 
@@ -124,5 +124,5 @@ detail:{
 	detail: 'Sector: Basic Materials, Industry: Specialty Chemicals'
 	}
 email: 'scgbond@cementhai.co.th'
-subscription:
+subscription: False
 }
