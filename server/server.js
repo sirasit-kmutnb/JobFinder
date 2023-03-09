@@ -9,6 +9,7 @@ const app = express()
 
 const url = "/api"
 
+
 mongoose.connect(process.env.DATABASE, {
                 useNewUrlParser:true,
                 useUnifiedTopology:false})

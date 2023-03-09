@@ -32,7 +32,9 @@ const Jobs = () => {
                         <Link to="#">
                             <h3>{post.title}</h3>
                         </Link>
-                        <div className="pt-3">{post.details.substring(0, 300)}</div>
+                        <div className="pt-3">{post.details.info1.substring(0, 300)}</div>
+                        <div className="pt-3">{post.details.info2.substring(0, 300)}</div>
+                        {/* <div className="pt-3">{post.details.info2.substring(0, 300)}</div> */}
                         <p className='text-muted'>ผู้โพสต์: {post.author_id} , เผยแพร่ : {new Date(post.createdAt).toLocaleString()}</p>
                     </div>
                 </div>

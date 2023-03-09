@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const seekerSchema = mongoose.Schema({
+const authSchema = mongoose.Schema({
     username: {
         type:String,
         required:true,
@@ -10,19 +10,14 @@ const seekerSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    email: {
+    role: {
         type:String,
         required:true,
-        unique:true
     },
-    firstname: {
-        type:String,
-        required:true
-    },
-    lastname: {
-        type:String,
+    details: {
+        type:{},
         required:true
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model("seekerAuths", seekerSchema)
+module.exports = mongoose.model("auths", authSchema)
