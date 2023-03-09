@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const postRoute = require('./routes/post')
+const authRoute = require('./routes/auth')
 require('dotenv').config()
 
 const app = express()
@@ -25,6 +26,7 @@ app.use(cors())
 app.use(morgan("dev"))
 
 app.use(url, postRoute)
+app.use(url, authRoute)
 
 const port = process.env.PORT || 8080
 app.listen(port, ()=>{
