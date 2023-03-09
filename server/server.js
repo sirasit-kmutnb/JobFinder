@@ -7,17 +7,26 @@ require('dotenv').config()
 
 const app = express()
 
+const url = "/api"
+
 mongoose.connect(process.env.DATABASE, {
                 useNewUrlParser:true,
                 useUnifiedTopology:false})
-        .then(()=>console.log("Connected"))
+        .then(()=>{
+                console.log("接続しました")
+                console.log(`http://127.0.0.1:${port}${url}/`)
+                console.log("======================================")
+        })
         .catch((err)=>console.log(err))
 
 app.use(express.json())
 app.use(cors())
 app.use(morgan("dev"))
 
-app.use('/api', postRoute)
+app.use(url, postRoute)
 
 const port = process.env.PORT || 8080
-app.listen(port, ()=>console.log(`Port ${port}`))
+app.listen(port, ()=>{
+        console.log("======================================")
+        console.log(`ポート ${port} でサーバーを起動しています`)
+})
