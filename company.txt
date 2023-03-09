@@ -1,0 +1,128 @@
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'SHOPEE (THAILAND) COMPANY LIMITED'
+	detail:'Sector(s): Industrials, Industry: Industrial Distribution'
+	}
+email:'marketingsolutions.th@shopee.com'
+subscription: True
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'BTS Group Holdings Public Company Limited'
+	detail:'Sector(s): Industrials, Industry: Railroads'
+	}
+email:'CompanySecretary@btsgroup.co.th'
+subscription: False
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'CPF (THAILAND) PUBLIC COMPANY LIMITED'
+	detail:'Sector: Consumer Defensive, Industry: Farm Products'
+	}
+email:'consumercenter@cpf.co.th'
+subscription: False
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'CP ALL PUBLIC COMPANY LIMITED'
+	detail:'Sector: Consumer Defensive, Industry: Grocery Stores'
+	}
+email:'faq@7eleven.co.th'
+subscription: True
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'KERRY EXPRESS (THAILAND) COMPANY LIMITED'
+	detail:'Sector: Industrials, Industry: Integrated Freight & Logistics'
+	}
+email: 'TH.EX.Callcenter@kerryexpress.com'
+subscription: True
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'SCG PACKAGING PUBLIC COMPANY LIMITED'
+	detail:'Sector: Consumer Cyclical, Industry: Packaging & Containers'
+	}
+email:'SCGP_invest@scg.com'
+subscription: False
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'CENTRAL PATTANA PUBLIC COMPANY LIMITED'
+	detail:'Sector: Real Estate, Industry: Real Estate—Diversified'
+	}
+email:'call_center@centralpattana.co.th'
+subscription: False
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'TRUE CORPORATION PUBLIC COMPANY LIMITED'
+	detail:'Sector: Communication Services, Industry: Telecom Services'
+	}
+email:'voc@truecorp.co.th'
+subscription: True
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'PTT PUBLIC COMPANY LIMITED'
+	detail:'Sector: Energy, Industry: Oil & Gas Integrated'
+	}
+email:'contact@pttplc.com'
+subscription: True
+}
+
+
+{_id:
+username:
+password:
+role:'Company'
+detail:{
+	name:'THE SIAM CEMENT PUBLIC COMPANY LIMITED'
+	detail: 'Sector: Basic Materials, Industry: Specialty Chemicals'
+	}
+email: 'scgbond@cementhai.co.th'
+subscription: False
+}
