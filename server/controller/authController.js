@@ -1,6 +1,12 @@
 const Auths = require('../models/auths')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const { ObjectId } = require('mongodb')
+const { expressjwt: expressJWT } = require("express-jwt")
+require('dotenv').config();
+
+const secret = process.env.TOKEN_ENCODE
+// console.log(secret)
 
 exports.register=(req, res) => {
     const {email, username, password, confirmpassword, role, info1, info2} = req.body
@@ -53,6 +59,7 @@ exports.register=(req, res) => {
 }
 
 exports.login = (req, res) => {
+
     const {username, password} = req.body
 
     switch(true) {
@@ -83,11 +90,14 @@ exports.login = (req, res) => {
                     res.status(200).json({
                         message:`You have been login to ${username} successfully`,
                         userName : user.username,
+                        userRole : user.role,
+                        userSub: user.subscription,
                         token
                     })
+                    // console.log(user)
                 })
                 .catch((err)=>{
-                    res.status(400).json({err})
+                    res.status(400).json({err:"Password is wrong"})
                 })
 
             }
@@ -97,8 +107,29 @@ exports.login = (req, res) => {
         })
         .catch((err)=>{
             if(err) {
-                res.json(err)
+                console.log(err)
             }
         })
-
 }
+
+exports.accountInfo = (req, res) => {
+    var {accountID} = req.body
+    const mongoObject = new ObjectId(accountID);
+    Auths.findOne({"_id" : mongoObject})
+    .then((data)=>{
+        if (!data) {
+            res.status(404).json({ error: "not found" });
+          } else {
+            res.json(data);
+          }
+    })
+    .catch((err)=>{
+        res.staus(400).json(err)
+    })
+}
+
+exports.requireLogin=expressJWT({
+    secret:secret,
+    algorithms:["HS256"],
+    userProperty:"auth"
+})
