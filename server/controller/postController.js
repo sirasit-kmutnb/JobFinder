@@ -2,7 +2,7 @@ const {v4: uuidv4} = require('uuid')
 const Posts = require('../models/posts')
 const jwt = require('jsonwebtoken')
 
-console.log(process.env.TOKEN_ENCODE)
+// console.log(process.env.TOKEN_ENCODE)
 
 exports.createPost=(req, res) => {
     const {title, author_id, details, role} = req.body
@@ -66,4 +66,12 @@ exports.getPost=(req, res) => {
                 res.status(400).json({err:"cant find"})
             })
     }
+}
+
+exports.singlePost=(req,res)=> {
+    const {slug} =req.params
+    Posts.findOne({slug}).exec()
+        .then((post)=>{
+            res.json(post)
+        })
 }

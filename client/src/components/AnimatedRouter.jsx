@@ -14,8 +14,8 @@ const AnimatedRouter = () => {
         <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/Jobs' element={<Jobs/>}/>
+            <Route path='/Jobs/:slug' element={<SingleJobs/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
-            <Route path='/Post' element={<SingleJobs/>}/>
             <Route path='/Register' element={<RegisterPage/>}/>
             <Route path='/Login' element={<LoginPage/>}/>
         </Routes>

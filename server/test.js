@@ -18,7 +18,7 @@ const token = jwt.sign({
 }, process.env.TOKEN_ENCODE, {expiresIn:"24h"})
 
 // console.log(process.env.TOKEN_ENCODE)
-console.log(token)
+// console.log(token)
 
 const payload = jwt.verify(token, process.env.TOKEN_ENCODE)
 console.log(payload)

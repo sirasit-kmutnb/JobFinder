@@ -1,6 +1,23 @@
-import { NavLink, Link } from "react-router-dom"
+import { useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
+import { getUser, logout } from '../services/authorize'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
+
+  const navigate = useNavigate()
+  const [data, setData] = useState([])
+
+  const userData = (accountID) => {
+    axios
+    .post(`${import.meta.env.VITE_APP_API}/accountInfo`, {accountID})
+    .then(response=>{
+      console.log(response.data)
+      setData(response.data)
+    })
+  }
+
   return (
     <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
@@ -20,18 +37,37 @@ const Navbar = () => {
                     <li className="nav-item">
                     <Link className="nav-link" to="/AboutUs">About Us</Link>
                     </li>
-                    <li className="nav-item">
-                    <Link className="nav-link" to="/Post">Single Page</Link>
+                </ul>
+
+                {
+                  !getUser() && (
+                  <ul className="navbar-nav">
+                    <li className="navbar-nav">
+                      <Link className="nav-link text-success" to="/Login">Login</Link>
                     </li>
-                </ul>
-                <ul className="navbar-nav">
-                  <li className="navbar-nav">
-                    <Link className="nav-link text-success" to="/Login">Login</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="btn btn-primary" to="/Register">Register</Link>
-                  </li>
-                </ul>
+                    <li className="nav-item">
+                      <Link className="btn btn-primary" to="/Register">Register</Link>
+                    </li>
+                  </ul>
+                  )
+                }
+
+                {
+                getUser() && (
+                    <ul className="navbar-nav">
+                        <li className="navbar-nav">
+                            <span className='nav-link disabled'>{getUser()}</span>
+                        </li>
+                        <li className="navbar-nav">
+                          <Link className='nav-link'><FontAwesomeIcon icon={faGear} /></Link>
+                        </li>
+                        <li className="navbar-nav ms-3">
+                            <button className="btn btn-danger" onClick={()=>logout(()=>navigate("/"))}>ออกจากระบบ</button>
+                        </li>
+                    </ul>
+                  )
+                }     
+
             </div>
         </div>
     </nav>

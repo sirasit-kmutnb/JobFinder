@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
-import { authenticate } from '../../services/authorize'
+import { authenticate, getUser } from '../../services/authorize'
 import AnimatedPage from "../AnimatedPage"
 
 
@@ -35,9 +35,9 @@ const LoginPage = () => {
         })
     }
 
-    // useEffect(()=>{
-        
-    // })
+    useEffect(()=>{
+        getUser() && navigate("/")
+    },[])
 
   return (
     <AnimatedPage>

@@ -1,8 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
 import AnimatedPage from "../AnimatedPage"
 
 const RegisterPage = () => {
+
+  const navigate = useNavigate()
 
   const [auth, setAuth] = useState({
     email: "",
@@ -19,7 +22,7 @@ const RegisterPage = () => {
   const inputValue =name=>event=>{
     setAuth({...auth, [name]:event.target.value})
   }
-  
+
   const submitForm =(e)=>{
     e.preventDefault()
     axios
@@ -27,6 +30,7 @@ const RegisterPage = () => {
     .then((response)=>{
       alert("Successful")
       setAuth({...auth, email:"", username:"", password:"", confirmpassword:"", role:"", info1:"", info2:""})
+      navigate('/login')
     })
     .catch(err=>{
       console.log(err)
@@ -87,14 +91,18 @@ const RegisterPage = () => {
             <option value="Company">Company</option>
           </select>
         </div>
-        <div className="form-group mt-3">
+
+        
+        { role && (<div className="form-group mt-3">
           <label>{label_info1}</label>
           <input type="text" className="form-control" value={info1} onChange={inputValue("info1")} />
-        </div>
-        <div className="form-group mt-3">
+        {/* </div>
+        <div className="form-group mt-3"> */}
           <label>{label_info2}</label>
           <input type="text" className="form-control" value={info2} onChange={inputValue("info2")} />
-        </div>
+        </div>)}
+
+        
 
         <br />
         <input type="submit" value="register" className="btn btn-primary" />

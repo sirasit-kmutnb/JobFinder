@@ -1,6 +1,7 @@
 const Auths = require('../models/auths')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const { ObjectId } = require('mongodb')
 const { expressjwt: expressJWT } = require("express-jwt")
 require('dotenv').config();
 
@@ -89,8 +90,11 @@ exports.login = (req, res) => {
                     res.status(200).json({
                         message:`You have been login to ${username} successfully`,
                         userName : user.username,
+                        userRole : user.role,
+                        userSub: user.subscription,
                         token
                     })
+                    // console.log(user)
                 })
                 .catch((err)=>{
                     res.status(400).json({err:"Password is wrong"})
@@ -108,6 +112,21 @@ exports.login = (req, res) => {
         })
 }
 
+exports.accountInfo = (req, res) => {
+    var {accountID} = req.body
+    const mongoObject = new ObjectId(accountID);
+    Auths.findOne({"_id" : mongoObject})
+    .then((data)=>{
+        if (!data) {
+            res.status(404).json({ error: "not found" });
+          } else {
+            res.json(data);
+          }
+    })
+    .catch((err)=>{
+        res.staus(400).json(err)
+    })
+}
 
 exports.requireLogin=expressJWT({
     secret:secret,
