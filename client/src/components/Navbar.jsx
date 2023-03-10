@@ -26,10 +26,10 @@ const Navbar = () => {
                 </ul>
                 <ul className="navbar-nav">
                   <li className="navbar-nav">
-                    <Link className="nav-link text-success" to="#">Login</Link>
+                    <Link className="nav-link text-success" to="/Login">Login</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="btn btn-primary" to="#">Register</Link>
+                    <Link className="btn btn-primary" to="/Register">Register</Link>
                   </li>
                 </ul>
             </div>

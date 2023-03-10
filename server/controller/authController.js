@@ -1,6 +1,11 @@
 const Auths = require('../models/auths')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const { expressjwt: expressJWT } = require("express-jwt")
+require('dotenv').config();
+
+const secret = process.env.TOKEN_ENCODE
+// console.log(secret)
 
 exports.register=(req, res) => {
     const {email, username, password, confirmpassword, role, info1, info2} = req.body
@@ -53,6 +58,7 @@ exports.register=(req, res) => {
 }
 
 exports.login = (req, res) => {
+
     const {username, password} = req.body
 
     switch(true) {
@@ -87,7 +93,7 @@ exports.login = (req, res) => {
                     })
                 })
                 .catch((err)=>{
-                    res.status(400).json({err})
+                    res.status(400).json({err:"Password is wrong"})
                 })
 
             }
@@ -97,8 +103,14 @@ exports.login = (req, res) => {
         })
         .catch((err)=>{
             if(err) {
-                res.json(err)
+                console.log(err)
             }
         })
-
 }
+
+
+exports.requireLogin=expressJWT({
+    secret:secret,
+    algorithms:["HS256"],
+    userProperty:"auth"
+})
