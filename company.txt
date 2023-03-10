@@ -1,6 +1,6 @@
 {_id:
-username:
-password:
+username: Shopee
+password: Sp2023
 role:'Company'
 detail:{
 	name:'SHOPEE (THAILAND) COMPANY LIMITED'
@@ -12,8 +12,8 @@ subscription: True
 
 
 {_id:
-username:
-password:
+username: BTS
+password: Train240kmhr
 role:'Company'
 detail:{
 	name:'BTS Group Holdings Public Company Limited'
@@ -25,8 +25,8 @@ subscription: False
 
 
 {_id:
-username:
-password:
+username: Cpfarming
+password: richfarming777
 role:'Company'
 detail:{
 	name:'CPF (THAILAND) PUBLIC COMPANY LIMITED'
@@ -38,8 +38,8 @@ subscription: False
 
 
 {_id:
-username:
-password:
+username: CPALL
+password: Bigmoneybag777
 role:'Company'
 detail:{
 	name:'CP ALL PUBLIC COMPANY LIMITED'
@@ -51,8 +51,8 @@ subscription: True
 
 
 {_id:
-username:
-password:
+username: Kerry
+password: delivery247
 role:'Company'
 detail:{
 	name:'KERRY EXPRESS (THAILAND) COMPANY LIMITED'
@@ -64,8 +64,8 @@ subscription: True
 
 
 {_id:
-username:
-password:
+username: SCGpacking
+password: Package246
 role:'Company'
 detail:{
 	name:'SCG PACKAGING PUBLIC COMPANY LIMITED'
@@ -77,8 +77,8 @@ subscription: False
 
 
 {_id:
-username:
-password:
+username: CENTRAL
+password: ShoppingCentral2023
 role:'Company'
 detail:{
 	name:'CENTRAL PATTANA PUBLIC COMPANY LIMITED'
@@ -90,8 +90,8 @@ subscription: False
 
 
 {_id:
-username:
-password:
+username: TRUE
+password: true123
 role:'Company'
 detail:{
 	name:'TRUE CORPORATION PUBLIC COMPANY LIMITED'
@@ -103,8 +103,8 @@ subscription: True
 
 
 {_id:
-username:
-password:
+username: PTT
+password: gasstastion2022
 role:'Company'
 detail:{
 	name:'PTT PUBLIC COMPANY LIMITED'
@@ -116,8 +116,8 @@ subscription: True
 
 
 {_id:
-username:
-password:
+username: SCG
+password: Siamcement2500
 role:'Company'
 detail:{
 	name:'THE SIAM CEMENT PUBLIC COMPANY LIMITED'
