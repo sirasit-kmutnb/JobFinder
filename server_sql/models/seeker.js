@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       s_uname: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       s_pass: {
         type: DataTypes.STRING(255),
@@ -23,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       s_email: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       s_subscription: {
         type: DataTypes.BOOLEAN,
