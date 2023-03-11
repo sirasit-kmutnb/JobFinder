@@ -1,10 +1,10 @@
 const { Sequelize } = require('sequelize');
 
-//อันนี้เป็นส่วนที่ใช้ในการบอก Sequelize ว่าเราจะ connect ไปที่ไหน
+//sync to mysql database!!
 const sequelize = new Sequelize(
  'JobFinder_db',
  'root',
- 'root',
+ 'Model@1234',
   {
     host: 'localhost',
     dialect: 'mysql'

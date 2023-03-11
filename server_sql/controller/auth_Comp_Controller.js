@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize(
  'JobFinder_db',
  'root',
- 'root',
+ 'Model@1234', // Dont forget your password!!! 
   {
     host: 'localhost',
     dialect: 'mysql'
@@ -18,7 +18,7 @@ require('dotenv').config();
 const secret = process.env.TOKEN_ENCODE
 
 exports.register_comp=(req, res) => {
-    const {name, username, password, confirmpassword, email, detail} = req.body
+    const {name, username, password, confirmpassword, email, detail } = req.body
     switch(true) {
         case !email:{
             return res.status(400).json({err:"Please enter your email"})
