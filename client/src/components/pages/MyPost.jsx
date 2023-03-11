@@ -79,7 +79,12 @@ const myPost = () => {
               ผู้โพสต์: You , เผยแพร่ :{" "}
               {new Date(post.createdAt).toLocaleString()}
             </p>
-            <button className="btn btn-outline-primary m-1">แก้ไขโพสต์</button>
+            <Link
+              to={`edit/${post.slug}`}
+              className="btn btn-outline-primary m-1"
+            >
+              แก้ไขโพสต์
+            </Link>
             <button
               className="btn btn-outline-danger m-1"
               onClick={() => confirmDelete(post.slug)}

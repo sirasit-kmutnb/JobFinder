@@ -7,12 +7,11 @@ import { getToken } from "../../services/authorize";
 const CreatePost = () => {
   const [state, setState] = useState({
     title: "",
-    author_id: "",
     details: "",
     role: "",
   });
 
-  const { title, author_id, details, role } = state;
+  const { title, details, role } = state;
 
   //กำหนดค่าให้ state
 
@@ -26,7 +25,7 @@ const CreatePost = () => {
     axios
       .post(
         `${import.meta.env.VITE_APP_API}/createPost`,
-        { title, author_id, details, role },
+        { title, details, role },
         {
           headers: {
             authorization: `Bearer ${getToken()}`,
@@ -35,10 +34,11 @@ const CreatePost = () => {
       )
       .then((response) => {
         alert("success");
-        setState({ ...state, title: "", author_id: "", details: "", role: "" });
+        setState({ ...state, title: "", details: "", role: "" });
       })
       .catch((err) => {
-        alert("err");
+        console.log(err);
+        // alert("err");
       });
   };
 
@@ -49,7 +49,7 @@ const CreatePost = () => {
       </Link>
       <br />
       <br />
-      {JSON.stringify(state)}
+      {/* {JSON.stringify(state)} */}
       <form onSubmit={submitForm}>
         <div className="from-group">
           <label>ชื่อบทความ</label>

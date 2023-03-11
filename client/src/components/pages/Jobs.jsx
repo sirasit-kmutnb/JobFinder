@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 
 const Jobs = () => {
   const [posts, setPosts] = useState([]);
-  const [usernames, setUsernames] = useState({});
+  const [usernames, setUsernames] = useState([]);
 
   const findUsername = (accountID) => {
     axios
       .post(`${import.meta.env.VITE_APP_API}/accountInfo`, { accountID })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+
         setUsernames((prevState) => ({
           ...prevState,
           [accountID]: response.data.username,
@@ -20,7 +21,6 @@ const Jobs = () => {
       })
       .catch((err) => alert(err));
   };
-
   const fetchData = () => {
     axios
       .get(`${import.meta.env.VITE_APP_API}/posts`)

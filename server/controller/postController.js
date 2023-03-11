@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 // console.log(process.env.TOKEN_ENCODE)
 
 exports.createPost=(req, res) => {
-    const {title, author_id, details, role} = req.body
+    const {title, details, role} = req.body
     let slug=uuidv4()
     var token = req.headers.authorization
     var token = token ? token.slice(7) : null;
@@ -15,9 +15,6 @@ exports.createPost=(req, res) => {
     switch(true){
         case !title:
             return res.status(400).json({err:"no title"})
-            break;
-        case !author_id:
-            return res.status(400).json({err:"no author"})
             break;
         case !details:
             return res.status(400).json({err:"no details"})
@@ -39,12 +36,17 @@ exports.getAllPost=(req, res) => {
         })
 }
 
-// exports.updatePost=(req, res) => {
-//     const {slug} = req.params
-//     Posts.findOneAndUpdate({slug}, {title, details, role}, {new:true}).exec()
-//         .then((post) => {res.json(post)})
-//         .catch((err) => {res.status(400).json(err)})
-// }
+exports.updatePost=(req, res) => {
+    const {slug} = req.params
+    const {title, details, role} = req.body
+    Posts.findOneAndUpdate({slug},{title, details, role},{new:true}).exec()
+        .then((post)=>{
+            res.json(post)
+        })
+        .catch((err)=>{
+            res.status(400).json(err)
+        })
+}
 
 // exports.getPost=(req, res) => {
 //     const token = req.headers.authorization

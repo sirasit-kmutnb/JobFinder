@@ -7,6 +7,7 @@ import SingleJobs from "./pages/SingleJobs";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import MyPost from "./pages/MyPost";
+import EditPost from "./pages/EditPost";
 import CreatePost from "./pages/CreatePost";
 import CompanyRoute from "../services/CompanyRoute";
 
@@ -32,6 +33,14 @@ const AnimatedRouter = () => {
             element={
               <CompanyRoute>
                 <MyPost />
+              </CompanyRoute>
+            }
+          />
+          <Route
+            path="/MyPost/edit/:slug"
+            element={
+              <CompanyRoute>
+                <EditPost />
               </CompanyRoute>
             }
           />
