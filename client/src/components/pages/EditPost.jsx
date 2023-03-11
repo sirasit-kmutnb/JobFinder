@@ -2,7 +2,7 @@ import AnimatedPage from "../AnimatedPage";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../../services/authorize";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const EditPost = () => {
   let { slug } = useParams();
@@ -58,7 +58,12 @@ const EditPost = () => {
 
   return (
     <AnimatedPage>
-      {JSON.stringify(state)}
+      <Link to="../myPost" className="btn btn-outline-success">
+        ย้อนกลับ
+      </Link>
+      <br />
+      <br />
+      {/* {JSON.stringify(state)} */}
       <form onSubmit={submitForm}>
         <div className="from-group">
           <label>ชื่อบทความ</label>
