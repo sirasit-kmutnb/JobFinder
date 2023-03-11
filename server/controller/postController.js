@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken')
 exports.createPost=(req, res) => {
     const {title, author_id, details, role} = req.body
     let slug=uuidv4()
-    const token = req.headers.authorization
+    var token = req.headers.authorization
+    var token = token ? token.slice(7) : null;
     var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE)
     var ID = userInfo.userID
 
@@ -54,7 +55,8 @@ exports.getAllPost=(req, res) => {
 // }
 
 exports.getPost=(req, res) => {
-    const token = req.headers.authorization
+    var token = req.headers.authorization
+    var token = token ? token.slice(7) : null;
     var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE)
     if(userInfo) {
         var id = userInfo.userID
@@ -73,5 +75,16 @@ exports.singlePost=(req,res)=> {
     Posts.findOne({slug}).exec()
         .then((post)=>{
             res.json(post)
+        })
+}
+
+exports.removePost=(req, res)=> {
+    const {slug} = req.params
+    Posts.findOneAndRemove({slug}).exec()
+        .then((res)=>{
+            res.json({message:"ลบบทความเรียบร้อย"})
+        })
+        .catch((err)=>{
+            console.log(err)
         })
 }

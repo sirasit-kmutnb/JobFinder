@@ -52,7 +52,7 @@ exports.register=(req, res) => {
             let password = hash
             Auths.create({email, username:String(username).toLowerCase(), password, role, details:detailsObject})
             .then((auth) => {res.json(auth)})
-            .catch((err)=>{res.status(400).json({err:"This username is already used"})})
+            .catch((err)=>{res.status(400).json({err:"This username or email is already used"})})
             //  .catch((err)=>{res.status(400).json(err)})
         })
     })
@@ -116,11 +116,13 @@ exports.accountInfo = (req, res) => {
     var {accountID} = req.body
     const mongoObject = new ObjectId(accountID);
     Auths.findOne({"_id" : mongoObject})
+    .select("-password")
     .then((data)=>{
         if (!data) {
             res.status(404).json({ error: "not found" });
           } else {
             res.json(data);
+            // console.log(data)
           }
     })
     .catch((err)=>{
