@@ -1,3 +1,5 @@
+const SQLite = require('sqlite3').verbose();
+
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -15,13 +17,19 @@ const { Sequelize } = require('sequelize');
 
 //อันนี้เป็นส่วนที่ใช้ในการบอก Sequelize ว่าเราจะ connect ไปที่ไหน
 const sequelize = new Sequelize(
-  'JobFinder', 
+ 'JobFinder_db',
+ 'root',
+ 'root',
   {
-  storage: '././JobFinder/database/JobFinder.db', 
-  dialect: 'sqlite',
-  dialectOptions: {
-        mode: SQLite.OPEN_READWRITE | SQLite.OPEN_CREATE | SQLite.OPEN_FULLMUTEX,
-   },
+    host: 'localhost',
+    dialect: 'mysql'
+  }
+);
+
+sequelize.authenticate().then(() => {
+  console.log('Connection has been established successfully.');
+}).catch((error) => {
+  console.error('Unable to connect to the database: ', error);
 });
 
   const db = {};
@@ -44,5 +52,10 @@ const sequelize = new Sequelize(
   db.seeker.belongsToMany(db.post, { through: db.interest });
   db.post.belongsToMany(db.seeker, { through: db.interest });
 
+  sequelize.sync().then(() => {
+    console.log('Book table created successfully!');
+ }).catch((error) => {
+    console.error('Unable to create table : ', error);
+ });
 
   module.exports = db;

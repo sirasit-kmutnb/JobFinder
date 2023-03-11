@@ -1,20 +1,38 @@
-module.exports = ( sequelize , Sequelize ) => {
-
-const seeker = sequelize.define(
-    'seeker',
-    {
-        s_id: { type: Sequelize.INTEGER(10), primaryKey: true, autoIncrement: true, field: 's_id' },
-        s_fname: { type: Sequelize.STRING(255), allowNull: false, field: 's_fname' },
-        s_lname: { type: Sequelize.STRING(255), allowNull: false, field: 's_lname' },
-        s_uname: { type: Sequelize.STRING(255), allowNull: false, field: 's_uname' },
-        s_pass: { type: Sequelize.STRING(255), allowNull: false, field: 's_pass' },
-        s_email: { type: Sequelize.STRING(255), allowNull: false, field: 's_email' },
-        s_subscription: { type: Sequelize.BOOLEAN, default:false, allowNull: false, field: 's_subscription' },
-    },
-    {
-        tableName: 'seeker' 
-    }
-  );
+module.exports = (sequelize, DataTypes) => {
+    const seeker = sequelize.define('seeker', {
+      s_id: {
+        type: DataTypes.INTEGER(10),
+        primaryKey: true,
+        autoIncrement: true
+      },
+      s_fname: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      s_lname: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      s_uname: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      s_pass: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      s_email: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      s_subscription: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      }
+    }, {
+      tableName: 'seeker'
+    });
   
-  return seeker;
-}
+    return seeker;
+  };

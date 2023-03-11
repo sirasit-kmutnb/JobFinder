@@ -1,14 +1,12 @@
-module.exports = ( sequelize , Sequelize ) => {
-
-    const interest = sequelize.define(
-        'interestr',
-        {
-            in_dtime: { type: Sequelize.DATE, primaryKey: true, autoIncrement: true, field: 'in_dtime' },
-        },
-        {
-            tableName: 'interest' 
-        }
-      );
-      
-      return interest;
-}
+module.exports = (sequelize, DataTypes) => {
+    const interest = sequelize.define('interest', {
+      in_dtime: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      }
+    }, {
+      tableName: 'interest'
+    });
+  
+    return interest;
+  };
