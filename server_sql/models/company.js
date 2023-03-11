@@ -5,23 +5,25 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      c_fname: {
-        type: DataTypes.STRING(255),
-        allowNull: false
-      },
-      c_lname: {
+      c_name: {
         type: DataTypes.STRING(255),
         allowNull: false
       },
       c_uname: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       c_pass: {
         type: DataTypes.STRING(255),
         allowNull: false
       },
       c_email: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        unique: true
+      },
+      c_detail: {
         type: DataTypes.STRING(255),
         allowNull: false
       },
