@@ -1,0 +1,128 @@
+{_id:
+username: 'warviSHA'
+password: 'l65t1EmM'
+role:'Seeker'
+detail:{
+	first name:'Lena'
+	last name:'Zimmerman'
+	}
+email:'peachesthewinrr@ctasprem.pro'
+subscription: True
+}
+
+
+{_id:
+username: 'hAlbeSAN'
+password: '3Tz49jFx'
+role:'Seeker'
+detail:{
+	first name:'Aida'
+	last name:'Lindsey'
+	}
+email:'at1823@fviatool.com'
+subscription: False
+}
+
+
+{_id:
+username: 'hAWLAgui'
+password: 'bE194MJ2'
+role:'Seeker'
+detail:{
+	first name:'Samuel'
+	last name:'Lloyd'
+	}
+email:'qzqz202@wosenow.com'
+subscription: False
+}
+
+
+{_id:
+username: 'IOUTatIc'
+password: 'SV1p8GC6'
+role:'Seeker'
+detail:{
+	first name:'Darrell'
+	last name:'Randolph'
+	}
+email:'andy2106@pickuplanet.com'
+subscription: True
+}
+
+
+{_id:
+username: 'wstOUDYm'
+password: '032UwKEV'
+role:'Seeker'
+detail:{
+	first name:'Marietta'
+	last name:'Crane'
+	}
+email: 'emrahkus@duniakeliling.com'
+subscription: True
+}
+
+
+{_id:
+username: 'muSENTio'
+password: 'PN1858Zh'
+role:'Seeker'
+detail:{
+	first name:'Renaldo'
+	last name:'Saunders'
+	}
+email:'elenmaslennikova@inspirationzuhause.me'
+subscription: False
+}
+
+
+{_id:
+username: 'IQueNsio'
+password: 'hlZ1259X'
+role:'Seeker'
+detail:{
+	first name:'Fran'
+	last name:'Lowery'
+	}
+email:'dermenkodima@816qs.com'
+subscription: False
+}
+
+
+{_id:
+username: 'NYMPorPS'
+password: 'qJ77AdG3'
+role:'Seeker'
+detail:{
+	first name:'Dawn'
+	last name:'Hodges'
+	}
+email:'mytvc15@wappay.xyz'
+subscription: True
+}
+
+
+{_id:
+username: 'hernisOl'
+password: 'e1auS60p'
+role:'Seeker'
+detail:{
+	first name:'Hollie'
+	last name:'Parker'
+	}
+email:'sidekickbob@rabihtech.xyz'
+subscription: True
+}
+
+
+{_id:
+username: 'eMENtenT'
+password: 'Zdr0I124'
+role:'Seeker'
+detail:{
+	first name:'Boris'
+	last name:'Melton'
+	}
+email: 'jeffgangi@pointnumber.us'
+subscription: False
+}
