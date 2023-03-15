@@ -1,46 +1,43 @@
-const { Sequelize } = require('sequelize');
-
+const { Sequelize } = require("sequelize");
 //sync to mysql database!!
-const sequelize = new Sequelize(
- 'JobFinder_db',
- 'root',
- 'Model@1234',
-  {
-    host: 'localhost',
-    dialect: 'mysql'
-  }
-);
-
-sequelize.authenticate().then(() => {
-  console.log('Connection has been established successfully.');
-}).catch((error) => {
-  console.error('Unable to connect to the database: ', error);
+const sequelize = new Sequelize("JobFinder_db", "root", "pamza2545", {
+  host: "localhost",
+  dialect: "mysql",
 });
 
-  const db = {};
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((error) => {
+    console.error("Unable to connect to the database: ", error);
+  });
 
-  db.Sequelize = Sequelize;
-  db.sequelize = sequelize;
+const db = {};
 
-  db.company = require("./models/company")( sequelize , Sequelize );
-  db.seeker = require("./models/seeker")( sequelize , Sequelize );
-  db.post = require("./models/posts")( sequelize , Sequelize );
-  db.interest = require("./models/interest")( sequelize , Sequelize );
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-  db.company.hasMany(
-    db.post,
-    {
-        foreignKey: { name: 'c_id', field: 'c_id' },
-    }
-  );
+db.company = require("./models/company")(sequelize, Sequelize);
+db.seeker = require("./models/seeker")(sequelize, Sequelize);
+db.post = require("./models/posts")(sequelize, Sequelize);
+db.interest = require("./models/interest")(sequelize, Sequelize);
 
-  db.seeker.belongsToMany(db.post, { through: db.interest });
-  db.post.belongsToMany(db.seeker, { through: db.interest });
+db.company.hasMany(db.post, {
+  foreignKey: { name: "c_id", field: "c_id" },
+});
 
-  sequelize.sync().then(() => {
-    console.log('Book table created successfully!');
- }).catch((error) => {
-    console.error('Unable to create table : ', error);
- });
+db.seeker.belongsToMany(db.post, { through: db.interest });
+db.post.belongsToMany(db.seeker, { through: db.interest });
 
-  module.exports = db;
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Book table created successfully!");
+  })
+  .catch((error) => {
+    console.error("Unable to create table : ", error);
+  });
+
+module.exports = db;

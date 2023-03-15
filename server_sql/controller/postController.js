@@ -1,92 +1,127 @@
-const {v4: uuidv4} = require('uuid')
-const Posts = require('../models/posts')
-const jwt = require('jsonwebtoken')
+const { v4: uuidv4 } = require("uuid");
+const { Sequelize, where } = require("sequelize");
+const sequelize = new Sequelize(
+  "JobFinder_db",
+  "root",
+  "pamza2545", // Dont forget your password!!!
+  {
+    host: "localhost",
+    dialect: "mysql",
+  }
+);
+const Posts = require("../models/posts")(sequelize, Sequelize);
+const jwt = require("jsonwebtoken");
+const { post } = require("../routes/post");
 
-// console.log(process.env.TOKEN_ENCODE)
+require("dotenv").config();
 
-exports.createPost=(req, res) => {
-    const {title, details, role} = req.body
-    let slug=uuidv4()
-    var token = req.headers.authorization
-    var token = token ? token.slice(7) : null;
-    var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE)
-    var ID = userInfo.userID
+//create a post
+exports.createPost = (req, res) => {
+  //pull title and details from body
+  const { title, details, role } = req.body;
+  //create a unique url for preventing collision
+  let slug = uuidv4();
+  //get bearer token from header
+  var token = req.headers.authorization;
+  //collect bearer token by slicing out "Bearer"
+  var token = token ? token.slice(7) : null;
+  //decode the encryption key and collect userInfo
+  //userInfo = {userID, userName, userSub}
+  var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE);
+  //collect userid
+  var ID = userInfo.userID;
+  let today = new Date();
 
-    switch(true){
-        case !title:
-            return res.status(400).json({err:"no title"})
-            break;
-        case !details:
-            return res.status(400).json({err:"no details"})
-            break;
-        case !role:
-            return res.status(400).json({err:"no role"})
-            break;
-    }
+  switch (true) {
+    //if not receiveing post title
+    case !title:
+      return res.status(400).json({ err: "no title" });
+    //if not receiveing post details
+    case !details:
+      return res.status(400).json({ err: "no details" });
+    //if not receiveing post role (avalible role)
+    case !role:
+      return res.status(400).json({ err: "no role" });
+  }
 
-    Posts.create({title, author_id:ID, details, role, slug})
-        .then((post) => {res.json(post)})
-        .catch((err)=>{res.status(400).json({err:"something wrong"})})
-}
+  //create post model
+  sequelize.sync().then(() => {
+    Posts.create({
+      p_slug: slug,
+      p_title: title,
+      p_author: ID,
+      p_detail: details,
+      p_role: role,
+      p_dtime: today,
+    })
+      .then((post) => {
+        res.json(post);
+      })
+      .catch((err) => {
+        res.status(400).json({ err: err });
+      });
+  });
+};
 
-exports.getAllPost=(req, res) => {
-    Posts.find({}).sort({createdAt: -1}).exec()
-        .then((posts) => {
-            res.json(posts)
-        })
-}
+//get all post
+exports.getAllPost = (req, res) => {
+  //find all post
+  Posts.findAll().then((post) => {
+    res.json(post);
+  });
+};
 
-exports.updatePost=(req, res) => {
-    const {slug} = req.params
-    const {title, details, role} = req.body
-    Posts.findOneAndUpdate({slug},{title, details, role},{new:true}).exec()
-        .then((post)=>{
-            res.json(post)
-        })
-        .catch((err)=>{
-            res.status(400).json(err)
-        })
-}
+//update the post by slug
+exports.updatePost = (req, res) => {
+  //collect slug from url
+  const { slug } = req.params;
+  //collect title, details, role
+  const { title, details, role } = req.body;
 
-// exports.getPost=(req, res) => {
-//     const token = req.headers.authorization
-//     // res.json({"token": token})
-//     var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE)
-//     // var username = userInfo.userName
-//     res.json(userInfo)
-// }
+  Posts.update(
+    { p_title: title, p_detail: details, p_role: role },
+    { where: { p_slug: slug } }
+  ).then((post) => {
+    res.json(post);
+  });
+};
 
-exports.getPost=(req, res) => {
-    var token = req.headers.authorization
-    var token = token ? token.slice(7) : null;
-    var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE)
-    if(userInfo) {
-        var id = userInfo.userID
-        Posts.find({author_id:id}).exec()
-            .then((data)=>{
-                res.json(data)
-            })
-            .catch((err)=>{
-                res.status(400).json({err:"cant find"})
-            })
-    }
-}
+//show only the post that this author write
+exports.getPost = (req, res) => {
+  //get bearer token from header
+  var token = req.headers.authorization;
+  //remove word "Bearer"
+  var token = token ? token.slice(7) : null;
+  //authenticate user
+  var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE);
+  if (userInfo) {
+    var id = userInfo.userID;
 
-exports.singlePost=(req,res)=> {
-    const {slug} =req.params
-    Posts.findOne({slug}).exec()
-        .then((post)=>{
-            res.json(post)
-        })
-}
+    //find post from author id
+    Posts.findOne({ where: { p_author: id } }).then((post) => {
+      res.json(post);
+    });
+  }
+};
 
-exports.removePost=(req, res)=> {
-    const {slug} = req.params
-    Posts.findOneAndRemove({slug}).exec()
-        .then((res)=>{
-            res.json({message:"ลบบทความเรียบร้อย"})
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-}
+//press the post and it will show only that post
+exports.singlePost = (req, res) => {
+  //collect slug data
+  const { slug } = req.params;
+  //find post by slug (uniqe url)
+  Posts.findOne({ where: { p_slug: slug } }).then((post) => {
+    res.json(post);
+  });
+};
+
+//remove the post
+exports.removePost = (req, res) => {
+  //collect slug data
+  const { slug } = req.params;
+  //delete post by slug (uniqe url)
+  Posts.destroy({
+    where: { p_slug: slug },
+  }).then((post) => {
+    res.json(post);
+  });
+};
