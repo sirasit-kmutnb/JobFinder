@@ -12,7 +12,7 @@ const SingleJobs = () => {
     axios
       .post(`${import.meta.env.VITE_APP_API}/accountInfo`, { accountID })
       .then((response) => {
-        console.log(response.data.username);
+        // console.log(response.data.username);
         setUsernames((prevState) => ({
           ...prevState,
           [accountID]: response.data.username,
@@ -42,6 +42,7 @@ const SingleJobs = () => {
           <p className="text-muted">
             ผู้โพสต์:{" "}
             {usernames[post.author_id] || findUsername(post.author_id)} ,
+            {/* {post.author_id} , */}
             เผยแพร่ : {new Date(post.createdAt).toLocaleString()}
           </p>
           <div className="pt-3">{post.details}</div>

@@ -108,6 +108,7 @@ const Jobs = () => {
               <p className="text-muted">
                 ผู้โพสต์:{" "}
                 {usernames[post.author_id] || findUsername(post.author_id)} ,{" "}
+                {/* {post.author_id} ,{" "} */}
                 เผยแพร่ : {new Date(post.createdAt).toLocaleString()}
               </p>
             </div>
