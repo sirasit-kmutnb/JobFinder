@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
+      p_author_id: {
+        type: DataTypes.INTEGER(10),
+        allowNull: false,
+      },
       p_author: {
         type: DataTypes.STRING(255),
         allowNull: false,

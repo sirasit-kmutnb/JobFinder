@@ -29,6 +29,7 @@ exports.createPost = (req, res) => {
   //userInfo = {userID, userName, userSub}
   var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE);
   //collect userid
+  var userName = userInfo.userName
   var ID = userInfo.userID;
   let today = new Date();
 
@@ -49,6 +50,7 @@ exports.createPost = (req, res) => {
     Posts.create({
       p_slug: slug,
       p_title: title,
+      p_author_id: userName,
       p_author: ID,
       p_detail: details,
       p_role: role,
