@@ -11,6 +11,7 @@ exports.createPost=(req, res) => {
     var token = token ? token.slice(7) : null;
     var userInfo = jwt.verify(token, process.env.TOKEN_ENCODE)
     var ID = userInfo.userID
+    var Name = userInfo.userName
 
     switch(true){
         case !title:
@@ -24,7 +25,7 @@ exports.createPost=(req, res) => {
             break;
     }
 
-    Posts.create({title, author_id:ID, details, role, slug})
+    Posts.create({title, author:Name, author_id:ID, details, role, slug})
         .then((post) => {res.json(post)})
         .catch((err)=>{res.status(400).json({err:"something wrong"})})
 }
