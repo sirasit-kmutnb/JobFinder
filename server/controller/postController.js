@@ -104,8 +104,8 @@ exports.removePost=(req, res)=> {
     const {slug} = req.params
     // find post from slug if found it ll be removed and response message if fail response error
     Posts.findOneAndRemove({slug}).exec()
-        .then((res)=>{
-            res.json({message:"ลบบทความเรียบร้อย"})
+        .then(()=>{
+            res.status(200).json({message:"This post have benn removed"})
         })
         .catch((err)=>{
             console.log(err)
