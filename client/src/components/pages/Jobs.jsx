@@ -3,26 +3,12 @@ import axios from "axios";
 
 import AnimatedPage from "../AnimatedPage";
 import { useEffect, useState } from "react";
+import "../../Jobs.css";
 
 const Jobs = () => {
   const [posts, setPosts] = useState([]);
   const [showPosts, setShowposts] = useState([]);
-  const [usernames, setUsernames] = useState([]);
   const [input, setInput] = useState("");
-
-  const findUsername = (accountID) => {
-    axios
-      .post(`${import.meta.env.VITE_APP_API}/accountInfo`, { accountID })
-      .then((response) => {
-        // console.log(response);
-
-        setUsernames((prevState) => ({
-          ...prevState,
-          [accountID]: response.data.username,
-        }));
-      })
-      .catch((err) => alert(err));
-  };
 
   const fetchData = () => {
     axios
@@ -49,8 +35,8 @@ const Jobs = () => {
         // check if input include some word in data
         if (
           posts[i].title.toLowerCase().includes(input.toLowerCase()) ||
-          posts[i].details.toLowerCase().includes(input.toLowerCase()) // ||
-          // findUsername(posts[i].author_id).includes(input.toLowerCase()) ///don't know how to fix it
+          posts[i].details.toLowerCase().includes(input.toLowerCase()) ||
+          posts[i].author.toLowerCase().includes(input.toLowerCase())
         ) {
           // work on the first time setShowdata
           if (nodata) {
@@ -70,6 +56,8 @@ const Jobs = () => {
       }
     }
   };
+
+  const findBytag = () => {};
 
   useEffect(() => {
     handleSearch();
@@ -94,29 +82,35 @@ const Jobs = () => {
       {showPosts ? (
         showPosts.map((post, index) => (
           <div
-            className="row mt-3"
+            className="postCard"
             key={index}
             style={{ borderBottom: "1px solid silver" }}
           >
-            <div className="col pt-3 pb-2">
+            <div className="col pt-2 pb-2">
               <Link to={`/Jobs/${post.slug}`}>
                 <h3>{post.title}</h3>
               </Link>
-              <div className="pt-3">{post.details.substring(0, 300)}</div>
+              <div className="pt-2">{post.details.substring(0, 300)}</div>
               {/* <div className="pt-3">{post.details.info2.substring(0, 300)}</div> */}
               {/* <div className="pt-3">{post.details.info2.substring(0, 300)}</div> */}
-              <p className="text-muted">
-                ผู้โพสต์:{" "}
-                {usernames[post.author_id] || findUsername(post.author_id)} ,{" "}
-                {/* {post.author_id} ,{" "} */}
-                เผยแพร่ : {new Date(post.createdAt).toLocaleString()}
+              <div className="badge bg-primary text-wrap">
+                ตำแหน่ง : {post.role}
+              </div>
+              <p className="text-muted pt-2">
+                ผู้โพสต์: {post.author} , เผยแพร่:{" "}
+                {new Date(post.createdAt).toLocaleString()}
               </p>
             </div>
           </div>
         ))
       ) : (
         <>
-          <h3 className="notfound">Not found</h3>
+          <div className="notfound">
+            <center>
+              <h2>ไม่มีโพสต์ที่คุณหาโดยคำว่า</h2>
+              <h3>"{input}"</h3>
+            </center>
+          </div>
         </>
       )}
     </AnimatedPage>

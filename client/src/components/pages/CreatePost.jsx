@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 import { getToken } from "../../services/authorize";
+import Swal from "sweetalert2";
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState({
     title: "",
     details: "",
@@ -33,11 +35,20 @@ const CreatePost = () => {
         }
       )
       .then((response) => {
-        alert("success");
+        Swal.fire({
+          icon: "success",
+          title: "successful",
+          text: "Let's see your post",
+        });
         setState({ ...state, title: "", details: "", role: "" });
+        navigate("/myPost");
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Please try again",
+          text: "Something went wrong",
+        });
         // alert("err");
       });
   };

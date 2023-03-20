@@ -2,9 +2,11 @@ import AnimatedPage from "../AnimatedPage";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../../services/authorize";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditPost = () => {
+  const navigate = useNavigate();
   let { slug } = useParams();
 
   const [state, setState] = useState({
@@ -46,9 +48,14 @@ const EditPost = () => {
         }
       )
       .then((response) => {
-        alert("Update success");
+        Swal.fire({
+          icon: "success",
+          title: "successful",
+          text: "Let's see your post",
+        });
         const { title, details, role } = response.data;
         setState({ ...state, title, details, role });
+        navigate("/myPost");
       });
     // .catch((err) => {
     //   alert("err");

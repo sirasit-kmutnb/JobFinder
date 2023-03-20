@@ -1,25 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 
 const SingleJobs = () => {
   let { slug } = useParams();
   const [post, setPost] = useState("");
-  const [usernames, setUsernames] = useState({});
-
-  const findUsername = (accountID) => {
-    axios
-      .post(`${import.meta.env.VITE_APP_API}/accountInfo`, { accountID })
-      .then((response) => {
-        // console.log(response.data.username);
-        setUsernames((prevState) => ({
-          ...prevState,
-          [accountID]: response.data.username,
-        }));
-      })
-      .catch((err) => alert(err));
-  };
 
   useEffect(() => {
     axios
@@ -36,13 +22,17 @@ const SingleJobs = () => {
 
   return (
     <AnimatedPage>
+      <Link to="../Jobs" className="btn btn-outline-success">
+        ย้อนกลับ
+      </Link>
+      <br />
+      <br />
       {post && (
         <div>
           <h1>{post.title}</h1>
           <p className="text-muted">
             ผู้โพสต์:{" "}
-            {usernames[post.author_id] || findUsername(post.author_id)} ,
-            {/* {post.author_id} , */}
+            {post.author} ,
             เผยแพร่ : {new Date(post.createdAt).toLocaleString()}
           </p>
           <div className="pt-3">{post.details}</div>

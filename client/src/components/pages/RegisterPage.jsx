@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
+import Swal from "sweetalert2";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -36,7 +37,11 @@ const RegisterPage = () => {
         info2,
       })
       .then((response) => {
-        alert("Successful");
+        Swal.fire({
+          icon: "success",
+          title: "Registration successful",
+          text: "Thank you for registering!",
+        });
         setAuth({
           ...auth,
           email: "",
@@ -47,11 +52,15 @@ const RegisterPage = () => {
           info1: "",
           info2: "",
         });
-        navigate("/login");
+        navigate("/myPost");
       })
       .catch((err) => {
         console.log(err);
-        alert(err.response.data.err);
+        Swal.fire({
+          icon: "error",
+          title: "Something went wrong",
+          text: "This email or username is already in use",
+        });
       });
   };
 

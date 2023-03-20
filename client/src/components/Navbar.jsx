@@ -76,7 +76,7 @@ const Navbar = () => {
 
             {!getUser() && (
               <ul className="navbar-nav">
-                <li className="navbar-nav">
+                <li className="navbar-item">
                   <Link className="nav-link text-success" to="/Login">
                     Login
                   </Link>
